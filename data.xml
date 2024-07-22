@@ -1,0 +1,12 @@
+<Settings>
+  <MySQL>
+    <User>root</User>
+    <Password>
+    </Password>
+    <Location>C:\xampp\mysql\bin</Location>
+  </MySQL>
+  <BackupLocation>C:\Backup_Files\Mysql</BackupLocation>
+  <BackupSchedule>11 PM</BackupSchedule>
+  <HideOnStartUp>True</HideOnStartUp>
+  <OverwriteBackup>True</OverwriteBackup>
+</Settings>
