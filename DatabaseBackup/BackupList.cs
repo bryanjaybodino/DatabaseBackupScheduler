@@ -103,10 +103,6 @@ namespace DatabaseBackup
                         MessageBox.Show("Database is already added!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
-                else
-                {
-                    MessageBox.Show("Wrong Username & Password \nor Wrong database Schema", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
             }
 
         }
@@ -188,9 +184,9 @@ namespace DatabaseBackup
                 }
                 mySQLCon.Close();
             }
-            catch
+            catch(Exception ex)
             {
-
+                MessageBox.Show(ex.Message);
             }
             return isSuccess;
 
