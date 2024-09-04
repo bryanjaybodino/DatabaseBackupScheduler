@@ -5,8 +5,13 @@
     </Password>
     <Location>C:\xampp\mysql\bin</Location>
   </MySQL>
-  <BackupLocation>C:\Backup_Files\Mysql</BackupLocation>
-  <BackupSchedule>11 PM</BackupSchedule>
-  <HideOnStartUp>True</HideOnStartUp>
+  <Mailer>
+    <Email>
+    </Email>
+    <Password>
+    </Password>
+  </Mailer>
+  <BackupLocation>C:\Backup_Files</BackupLocation>
+  <BackupSchedule>10 AM</BackupSchedule>
   <OverwriteBackup>True</OverwriteBackup>
 </Settings>

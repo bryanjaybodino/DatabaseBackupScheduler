@@ -26,13 +26,14 @@ namespace DatabaseBackup
                 {
                     Directory.CreateDirectory(destination);
                 }
-                processStart.Arguments = string.Format("/C start "+ destination);
+                processStart.Arguments = string.Format("/C start " + destination);
                 Process.Start(processStart);
             });
         }
-        public async void command(string DatabaseName,bool showmessage)
+        public async void command(string DatabaseName, bool showmessage)
         {
-            await Task.Run(() => {
+            await Task.Run(async () =>
+            {
                 App_Data.ParentNode parentNode = new App_Data.ParentNode();
                 App_Data.MySQLNode mySQLNode = new App_Data.MySQLNode();
                 string backup_location = parentNode.data(App_Data.ParentNode.node.BackupLocation);
@@ -41,16 +42,19 @@ namespace DatabaseBackup
                 string password = mySQLNode.data(App_Data.MySQLNode.node.Password);
                 bool Overtwrite_Backup = (parentNode.data(App_Data.ParentNode.node.OverwriteBackup).ToUpper() == "TRUE") ? true : false;
 
-                                                                                   
-                if (!Directory.Exists(backup_location)){
+
+                if (!Directory.Exists(backup_location))
+                {
                     Directory.CreateDirectory(backup_location);
                 }
                 string destination = backup_location + "\\" + DatabaseName + "\\";
-                if (!Directory.Exists(destination)){
+                if (!Directory.Exists(destination))
+                {
                     Directory.CreateDirectory(destination);
                 }
                 string save_file = destination + "\\" + DatabaseName + ".sql";
-                if (Overtwrite_Backup == false){
+                if (Overtwrite_Backup == false)
+                {
                     save_file = destination + "\\" + DatabaseName + "_" + DateTime.Now.ToString("yyyy_MMM_dd") + ".sql";
                 }
 
@@ -60,15 +64,15 @@ namespace DatabaseBackup
                 processStart.Arguments = @"/K cd " + mysql_location + " & ";
                 processStart.Arguments += "mysqldump --user=" + user + " --password=" + password + " " + DatabaseName + ">" + save_file;
                 Process.Start(processStart);
-              
-                if(showmessage == true)
+
+                if (showmessage == true)
                 {
                     bool loop = true;
                     while (loop)
                     {
                         if (File.Exists(save_file) == true)
                         {
-                            Thread.Sleep(1000);//Wait the file has been save with value
+                            await Task.Delay(1000);//Wait the file has been save with value
                             FileInfo fileInfo = new FileInfo(save_file);
                             if (fileInfo.Length <= 0)
                             {
@@ -83,7 +87,7 @@ namespace DatabaseBackup
                     }
                 }
             });
-            
+
         }
     }
 }

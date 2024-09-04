@@ -1,2 +1,10 @@
 <Schema>
+  <Database id="smsdatabase">
+    <ID>1</ID>
+    <Name>smsdatabase</Name>
+  </Database>
+  <Database id="yourdatabase">
+    <ID>2</ID>
+    <Name>yourdatabase</Name>
+  </Database>
 </Schema>

@@ -28,16 +28,31 @@ namespace DatabaseBackup
         {
             if (!File.Exists(XMLPath))
             {
+                string backupLocation = "C:\\Backup_Files";
+                if (!Directory.Exists(backupLocation))
+                {
+                    Directory.CreateDirectory(backupLocation);
+                }
+                string location = "C:\\xampp\\mysql\\bin";
+                string backupTime = "12 AM";
+                string overwrite = "True";
+                string mysql_username = "root";
+
+
                 string data =
                     "<Settings>\n" +
                         " <MySQL>\n" +
-                            "  <User></User>\n" +
+                            $"  <User>{mysql_username}</User>\n" +
                             "  <Password></Password>\n" +
-                            "  <Location></Location>\n" +
+                            $"  <Location>{location}</Location>\n" +
                         "  </MySQL>\n" +
-                        " <BackupLocation></BackupLocation>\n" +
-                        " <BackupSchedule></BackupSchedule>\n" +
-                        " <OverwriteBackup>True</OverwriteBackup>\n" +
+                        " <Mailer>\n" +
+                            "  <Email></Email>\n" +
+                            "  <Password></Password>\n" +
+                        "  </Mailer>\n" +
+                        $" <BackupLocation>{backupLocation}</BackupLocation>\n" +
+                        $" <BackupSchedule>{backupTime}</BackupSchedule>\n" +
+                        $" <OverwriteBackup>{overwrite}</OverwriteBackup>\n" +
                     "</Settings>\n";
                 File.AppendAllText(XMLPath, data);
             }
@@ -51,7 +66,7 @@ namespace DatabaseBackup
                 BackupSchedule,
                 OverwriteBackup
             }
-            public void update(string BackupLocation,string BackupSchedule,string OverwriteBackup)
+            public void update(string BackupLocation, string BackupSchedule, string OverwriteBackup)
             {
                 string value = "";
                 XmlDocument xmlDocument = new XmlDocument();
@@ -124,6 +139,51 @@ namespace DatabaseBackup
                 xmlDocument.Load(XMLPath);
 
                 XmlNodeList xmlNodeList = xmlDocument.SelectNodes("Settings/MySQL");
+                for (int i = 0; i < xmlNodeList.Count; i++)
+                {
+                    XmlNodeList User = xmlNodeList.Item(i).SelectNodes(node.ToString());
+                    value = User.Item(i).InnerText;
+                }
+                return value;
+            }
+
+        }
+
+
+
+
+
+        public class MailerNode
+        {
+            public enum node
+            {
+                Email,
+                Password
+            }
+
+            public void update(string Email, string Password)
+            {
+                string value = "";
+                XmlDocument xmlDocument = new XmlDocument();
+                xmlDocument.Load(XMLPath);
+                XmlNodeList xmlNodeList = xmlDocument.SelectNodes("Settings/Mailer");
+                for (int i = 0; i < xmlNodeList.Count; i++)
+                {
+                    XmlNodeList _User = xmlNodeList.Item(i).SelectNodes("Email");
+                    _User[i].InnerText = Email;
+
+                    XmlNodeList _Password = xmlNodeList.Item(i).SelectNodes("Password");
+                    _Password[i].InnerText = Password;
+                }
+                xmlDocument.Save(XMLPath);
+            }
+            public string data(node node)
+            {
+                string value = "";
+                XmlDocument xmlDocument = new XmlDocument();
+                xmlDocument.Load(XMLPath);
+
+                XmlNodeList xmlNodeList = xmlDocument.SelectNodes("Settings/Mailer");
                 for (int i = 0; i < xmlNodeList.Count; i++)
                 {
                     XmlNodeList User = xmlNodeList.Item(i).SelectNodes(node.ToString());
