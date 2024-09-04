@@ -77,8 +77,8 @@ namespace DatabaseBackup
             label_ampm.Text = DateTime.Now.ToString("tt");
             label_time.Text = DateTime.Now.ToString("hh:mm:ss");
             if (
-                //DateTime.Now.ToString("hh tt").ToUpper() == parentNode.data(App_Data.ParentNode.node.BackupSchedule) &&
-                //DateTime.Now.ToString("mm").ToUpper() == "01" &&
+                DateTime.Now.ToString("hh tt").ToUpper() == parentNode.data(App_Data.ParentNode.node.BackupSchedule) &&
+                DateTime.Now.ToString("mm").ToUpper() == "01" &&
                 DateTime.Now.ToString("ss").ToUpper() == "01")
             {
                 CMD cmd = new CMD();

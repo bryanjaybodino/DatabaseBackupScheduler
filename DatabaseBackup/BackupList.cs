@@ -145,7 +145,10 @@ namespace DatabaseBackup
                 }
                 bind(table);
             }
-            catch { }
+            catch (Exception er)
+            {
+                MessageBox.Show(er.Message);
+            }
         }
 
         public void ItemClicked(object sender, ToolStripItemClickedEventArgs e)
@@ -159,7 +162,7 @@ namespace DatabaseBackup
             if (e.ClickedItem.Name == "Backup")
             {
                 create_backup_directory();
-                cmd.command(Main.Selected_Database,true);
+                cmd.command(Main.Selected_Database, true);
             }
             if (e.ClickedItem.Name == "Path")
             {
@@ -184,7 +187,7 @@ namespace DatabaseBackup
                 }
                 mySQLCon.Close();
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
