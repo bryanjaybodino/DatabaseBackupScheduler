@@ -1,2 +1,6 @@
 <Schema>
+  <Database id="erp_data">
+  <ID>1</ID>
+  <Name>erp_data</Name>
+</Database>
 </Schema>
