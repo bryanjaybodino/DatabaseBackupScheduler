@@ -11,6 +11,7 @@ using System.Windows.Forms;
 
 namespace DatabaseBackup
 {
+    //vilhnqvhzfwfyktd
     internal class Mailer
     {
         private static readonly Regex EmailRegex = new Regex(
@@ -31,7 +32,7 @@ namespace DatabaseBackup
             _mailerNode = new App_Data.MailerNode();
         }
 
-        public async Task Send(string to, string ccList, string subject, string body, List<string> filePaths, bool isZip = false)
+        public async Task Send(string to, string body, List<string> filePaths, bool isZip = false)
         {
             try
             {
@@ -39,6 +40,8 @@ namespace DatabaseBackup
                 {
                     var from = _mailerNode.data(App_Data.MailerNode.node.Email);
                     var password = _mailerNode.data(App_Data.MailerNode.node.Password);
+                    var ccList = _mailerNode.data(App_Data.MailerNode.node.CC);
+                    var subject = _mailerNode.data(App_Data.MailerNode.node.Subject);
 
                     using (var mail = new MailMessage(from, to))
                     using (var client = new SmtpClient("smtp.gmail.com", 587))

@@ -39,9 +39,6 @@ namespace DatabaseBackup
             textBox_mysql_password.Text = mySQLNode.data(App_Data.MySQLNode.node.Password);
             comboBox_backup_schedule.Text = parentNode.data(App_Data.ParentNode.node.BackupSchedule);
 
-            textBox_email_account.Text = mailerNode.data(App_Data.MailerNode.node.Email);
-            textBox_email_password.Text = mailerNode.data(App_Data.MailerNode.node.Password);
-
 
 
             bool Overtwrite_Backup = (parentNode.data(App_Data.ParentNode.node.OverwriteBackup).ToUpper() == "TRUE") ? true : false;
@@ -67,10 +64,16 @@ namespace DatabaseBackup
         }
         private void button_save_settings_Click(object sender, EventArgs e)
         {
-            parentNode.update(textBox_backup_location.Text, comboBox_backup_schedule.Text, checkBox_overwrite_backup_filename.Checked.ToString());
-            mySQLNode.update(textBox_mysql_username.Text, textBox_mysql_password.Text, textBox_mysql_folder_location.Text);
-            mailerNode.update(textBox_email_account.Text, textBox_email_password.Text);
-            MessageBox.Show("Settings has been saved successfully!", "Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            try
+            {
+                parentNode.update(textBox_backup_location.Text, comboBox_backup_schedule.Text, checkBox_overwrite_backup_filename.Checked.ToString());
+                mySQLNode.update(textBox_mysql_username.Text, textBox_mysql_password.Text, textBox_mysql_folder_location.Text);
+                MessageBox.Show("Settings has been saved successfully!", "Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            catch (Exception er)
+            {
+                MessageBox.Show(er.Message, "Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            } 
         }
 
         private async void timer_Tick(object sender, EventArgs e)
@@ -99,7 +102,7 @@ namespace DatabaseBackup
                             List<string> attachments = new List<string>();
                             attachments.Add(fullpath + "\\" + databasename + ".sql");
                             Mailer mailer = new Mailer();
-                            await mailer.Send(mailerNode.data(App_Data.MailerNode.node.Email), "", databasename, "Your Database Backup", attachments, true);
+                            await mailer.Send(mailerNode.data(App_Data.MailerNode.node.Email), $"{databasename} Your Database Backup", attachments, true);
                         }
                     }
                     catch { }
@@ -164,7 +167,7 @@ namespace DatabaseBackup
                 "Set your backup time schedule and click the save setting button.\n\n" +
 
                 "4. Manual backup?\n" +
-                "Left click the row and right click and choose backup.\n" +
+                "Left click the row and backup button.\n" +
 
                 "5. How to find backup files?\n" +
                 "Left click the row and right click and choose path";
@@ -174,26 +177,10 @@ namespace DatabaseBackup
 
         private void button_get_email_password_Click(object sender, EventArgs e)
         {
-            // Specify the URL you want to open
-            string url = "https://myaccount.google.com/apppasswords";
-
-            try
-            {
-                // Open the URL in the default web browser
-                Process.Start(new ProcessStartInfo
-                {
-                    FileName = url,
-                    UseShellExecute = true // This is necessary for .NET Core/5+
-                });
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Not supporte you can manual type the link\n\n{url}");
-            }
 
 
         }
-        
+
         private void button_backup_Click(object sender, EventArgs e)
         {
             if (!string.IsNullOrWhiteSpace(Main.Selected_Database))
@@ -206,6 +193,24 @@ namespace DatabaseBackup
             {
                 MessageBox.Show("Please select database", "Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+        EmailSettings emailSettings = new EmailSettings();
+        private void button_email_settings_Click(object sender, EventArgs e)
+        {
+            if (!emailSettings.Visible)
+            {
+                emailSettings.Owner = this;
+                emailSettings.Open();
+            }
+            else
+            {  
+                emailSettings.BringToFront(); // Bring the form to the front if it is already visible
+            }
+        }
+
+        private void Main_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            emailSettings.Close();
         }
     }
 }

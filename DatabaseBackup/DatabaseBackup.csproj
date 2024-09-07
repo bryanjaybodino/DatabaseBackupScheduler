@@ -78,6 +78,12 @@
     <Compile Include="App_Data.cs" />
     <Compile Include="BackupList.cs" />
     <Compile Include="CMD.cs" />
+    <Compile Include="EmailSettings.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EmailSettings.Designer.cs">
+      <DependentUpon>EmailSettings.cs</DependentUpon>
+    </Compile>
     <Compile Include="Mailer.cs" />
     <Compile Include="Main.cs">
       <SubType>Form</SubType>
@@ -87,6 +93,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="EmailSettings.resx">
+      <DependentUpon>EmailSettings.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Main.resx">
       <DependentUpon>Main.cs</DependentUpon>
     </EmbeddedResource>

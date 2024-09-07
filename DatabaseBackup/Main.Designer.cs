@@ -30,7 +30,7 @@ namespace DatabaseBackup
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
@@ -44,11 +44,6 @@ namespace DatabaseBackup
             this.Delete = new System.Windows.Forms.ToolStripMenuItem();
             this.Backup = new System.Windows.Forms.ToolStripMenuItem();
             this.panel5 = new System.Windows.Forms.Panel();
-            this.button_get_email_password = new System.Windows.Forms.Button();
-            this.label5 = new System.Windows.Forms.Label();
-            this.textBox_email_password = new System.Windows.Forms.TextBox();
-            this.label6 = new System.Windows.Forms.Label();
-            this.textBox_email_account = new System.Windows.Forms.TextBox();
             this.checkBox_overwrite_backup_filename = new System.Windows.Forms.CheckBox();
             this.label3 = new System.Windows.Forms.Label();
             this.comboBox_backup_schedule = new System.Windows.Forms.ComboBox();
@@ -60,6 +55,7 @@ namespace DatabaseBackup
             this.button_choose_mysql_location = new System.Windows.Forms.Button();
             this.button_choose_backup_location = new System.Windows.Forms.Button();
             this.panel6 = new System.Windows.Forms.Panel();
+            this.button_email_settings = new System.Windows.Forms.Button();
             this.button_backup = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -82,7 +78,7 @@ namespace DatabaseBackup
             this.panel2.Location = new System.Drawing.Point(708, 50);
             this.panel2.Margin = new System.Windows.Forms.Padding(2, 1, 2, 1);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(30, 396);
+            this.panel2.Size = new System.Drawing.Size(30, 351);
             this.panel2.TabIndex = 4;
             // 
             // panel1
@@ -91,7 +87,7 @@ namespace DatabaseBackup
             this.panel1.Location = new System.Drawing.Point(0, 50);
             this.panel1.Margin = new System.Windows.Forms.Padding(2, 1, 2, 1);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(32, 396);
+            this.panel1.Size = new System.Drawing.Size(32, 351);
             this.panel1.TabIndex = 3;
             // 
             // panel3
@@ -195,11 +191,6 @@ namespace DatabaseBackup
             // 
             // panel5
             // 
-            this.panel5.Controls.Add(this.button_get_email_password);
-            this.panel5.Controls.Add(this.label5);
-            this.panel5.Controls.Add(this.textBox_email_password);
-            this.panel5.Controls.Add(this.label6);
-            this.panel5.Controls.Add(this.textBox_email_account);
             this.panel5.Controls.Add(this.checkBox_overwrite_backup_filename);
             this.panel5.Controls.Add(this.label3);
             this.panel5.Controls.Add(this.comboBox_backup_schedule);
@@ -214,72 +205,14 @@ namespace DatabaseBackup
             this.panel5.Location = new System.Drawing.Point(32, 50);
             this.panel5.Margin = new System.Windows.Forms.Padding(2, 1, 2, 1);
             this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(235, 396);
+            this.panel5.Size = new System.Drawing.Size(235, 351);
             this.panel5.TabIndex = 20;
-            // 
-            // button_get_email_password
-            // 
-            this.button_get_email_password.BackColor = System.Drawing.Color.DodgerBlue;
-            this.button_get_email_password.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.button_get_email_password.FlatAppearance.BorderSize = 0;
-            this.button_get_email_password.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button_get_email_password.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button_get_email_password.ForeColor = System.Drawing.Color.White;
-            this.button_get_email_password.Location = new System.Drawing.Point(114, 167);
-            this.button_get_email_password.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.button_get_email_password.Name = "button_get_email_password";
-            this.button_get_email_password.Size = new System.Drawing.Size(94, 23);
-            this.button_get_email_password.TabIndex = 24;
-            this.button_get_email_password.Text = "Get Password";
-            this.button_get_email_password.UseVisualStyleBackColor = false;
-            this.button_get_email_password.Click += new System.EventHandler(this.button_get_email_password_Click);
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(10, 148);
-            this.label5.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(96, 15);
-            this.label5.TabIndex = 31;
-            this.label5.Text = "Email Password";
-            // 
-            // textBox_email_password
-            // 
-            this.textBox_email_password.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox_email_password.Location = new System.Drawing.Point(11, 167);
-            this.textBox_email_password.Margin = new System.Windows.Forms.Padding(2, 1, 2, 1);
-            this.textBox_email_password.Name = "textBox_email_password";
-            this.textBox_email_password.Size = new System.Drawing.Size(101, 23);
-            this.textBox_email_password.TabIndex = 30;
-            this.textBox_email_password.UseSystemPasswordChar = true;
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(10, 104);
-            this.label6.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(85, 15);
-            this.label6.TabIndex = 29;
-            this.label6.Text = "Email Account";
-            // 
-            // textBox_email_account
-            // 
-            this.textBox_email_account.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox_email_account.Location = new System.Drawing.Point(11, 123);
-            this.textBox_email_account.Margin = new System.Windows.Forms.Padding(2, 1, 2, 1);
-            this.textBox_email_account.Name = "textBox_email_account";
-            this.textBox_email_account.Size = new System.Drawing.Size(196, 23);
-            this.textBox_email_account.TabIndex = 28;
             // 
             // checkBox_overwrite_backup_filename
             // 
             this.checkBox_overwrite_backup_filename.AutoSize = true;
             this.checkBox_overwrite_backup_filename.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.checkBox_overwrite_backup_filename.Location = new System.Drawing.Point(11, 327);
+            this.checkBox_overwrite_backup_filename.Location = new System.Drawing.Point(11, 258);
             this.checkBox_overwrite_backup_filename.Name = "checkBox_overwrite_backup_filename";
             this.checkBox_overwrite_backup_filename.Size = new System.Drawing.Size(190, 20);
             this.checkBox_overwrite_backup_filename.TabIndex = 27;
@@ -290,7 +223,7 @@ namespace DatabaseBackup
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(10, 277);
+            this.label3.Location = new System.Drawing.Point(10, 208);
             this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(103, 15);
@@ -328,7 +261,7 @@ namespace DatabaseBackup
             "11 PM",
             "12 AM",
             "12 PM"});
-            this.comboBox_backup_schedule.Location = new System.Drawing.Point(11, 296);
+            this.comboBox_backup_schedule.Location = new System.Drawing.Point(11, 227);
             this.comboBox_backup_schedule.Name = "comboBox_backup_schedule";
             this.comboBox_backup_schedule.Size = new System.Drawing.Size(196, 24);
             this.comboBox_backup_schedule.TabIndex = 25;
@@ -340,7 +273,7 @@ namespace DatabaseBackup
             this.button_save_settings.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button_save_settings.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button_save_settings.ForeColor = System.Drawing.Color.White;
-            this.button_save_settings.Location = new System.Drawing.Point(11, 354);
+            this.button_save_settings.Location = new System.Drawing.Point(11, 285);
             this.button_save_settings.Name = "button_save_settings";
             this.button_save_settings.Size = new System.Drawing.Size(197, 41);
             this.button_save_settings.TabIndex = 24;
@@ -352,7 +285,7 @@ namespace DatabaseBackup
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(10, 235);
+            this.label2.Location = new System.Drawing.Point(10, 166);
             this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(104, 15);
@@ -362,7 +295,7 @@ namespace DatabaseBackup
             // textBox_mysql_password
             // 
             this.textBox_mysql_password.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox_mysql_password.Location = new System.Drawing.Point(11, 253);
+            this.textBox_mysql_password.Location = new System.Drawing.Point(11, 184);
             this.textBox_mysql_password.Margin = new System.Windows.Forms.Padding(2, 1, 2, 1);
             this.textBox_mysql_password.Name = "textBox_mysql_password";
             this.textBox_mysql_password.Size = new System.Drawing.Size(196, 23);
@@ -373,7 +306,7 @@ namespace DatabaseBackup
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(13, 193);
+            this.label1.Location = new System.Drawing.Point(13, 124);
             this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(108, 15);
@@ -383,7 +316,7 @@ namespace DatabaseBackup
             // textBox_mysql_username
             // 
             this.textBox_mysql_username.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox_mysql_username.Location = new System.Drawing.Point(11, 212);
+            this.textBox_mysql_username.Location = new System.Drawing.Point(11, 143);
             this.textBox_mysql_username.Margin = new System.Windows.Forms.Padding(2, 1, 2, 1);
             this.textBox_mysql_username.Name = "textBox_mysql_username";
             this.textBox_mysql_username.Size = new System.Drawing.Size(196, 23);
@@ -416,6 +349,7 @@ namespace DatabaseBackup
             // 
             // panel6
             // 
+            this.panel6.Controls.Add(this.button_email_settings);
             this.panel6.Controls.Add(this.button_backup);
             this.panel6.Controls.Add(this.dataGridView1);
             this.panel6.Controls.Add(this.button_how);
@@ -423,10 +357,28 @@ namespace DatabaseBackup
             this.panel6.Controls.Add(this.textBox_backup_location);
             this.panel6.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel6.Location = new System.Drawing.Point(267, 50);
-            this.panel6.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panel6.Margin = new System.Windows.Forms.Padding(2);
             this.panel6.Name = "panel6";
-            this.panel6.Size = new System.Drawing.Size(441, 396);
+            this.panel6.Size = new System.Drawing.Size(441, 351);
             this.panel6.TabIndex = 21;
+            // 
+            // button_email_settings
+            // 
+            this.button_email_settings.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.button_email_settings.BackColor = System.Drawing.Color.DodgerBlue;
+            this.button_email_settings.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.button_email_settings.FlatAppearance.BorderSize = 0;
+            this.button_email_settings.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button_email_settings.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button_email_settings.ForeColor = System.Drawing.Color.White;
+            this.button_email_settings.Location = new System.Drawing.Point(245, 92);
+            this.button_email_settings.Margin = new System.Windows.Forms.Padding(2);
+            this.button_email_settings.Name = "button_email_settings";
+            this.button_email_settings.Size = new System.Drawing.Size(110, 27);
+            this.button_email_settings.TabIndex = 28;
+            this.button_email_settings.Text = "Email Settings";
+            this.button_email_settings.UseVisualStyleBackColor = false;
+            this.button_email_settings.Click += new System.EventHandler(this.button_email_settings_Click);
             // 
             // button_backup
             // 
@@ -438,7 +390,7 @@ namespace DatabaseBackup
             this.button_backup.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button_backup.ForeColor = System.Drawing.Color.White;
             this.button_backup.Location = new System.Drawing.Point(359, 92);
-            this.button_backup.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.button_backup.Margin = new System.Windows.Forms.Padding(2);
             this.button_backup.Name = "button_backup";
             this.button_backup.Size = new System.Drawing.Size(82, 27);
             this.button_backup.TabIndex = 24;
@@ -450,13 +402,13 @@ namespace DatabaseBackup
             // 
             this.dataGridView1.AllowUserToDeleteRows = false;
             this.dataGridView1.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
             this.dataGridView1.ColumnHeadersHeight = 29;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -468,7 +420,7 @@ namespace DatabaseBackup
             this.dataGridView1.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
             this.dataGridView1.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView1.Size = new System.Drawing.Size(441, 272);
+            this.dataGridView1.Size = new System.Drawing.Size(441, 227);
             this.dataGridView1.TabIndex = 13;
             this.dataGridView1.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.CellClick);
             this.dataGridView1.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.CellValueChanged);
@@ -497,7 +449,7 @@ namespace DatabaseBackup
             // 
             this.button_how.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.button_how.Location = new System.Drawing.Point(359, 25);
-            this.button_how.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.button_how.Margin = new System.Windows.Forms.Padding(2);
             this.button_how.Name = "button_how";
             this.button_how.Size = new System.Drawing.Size(82, 58);
             this.button_how.TabIndex = 23;
@@ -528,8 +480,8 @@ namespace DatabaseBackup
             // panel7
             // 
             this.panel7.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel7.Location = new System.Drawing.Point(0, 446);
-            this.panel7.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panel7.Location = new System.Drawing.Point(0, 401);
+            this.panel7.Margin = new System.Windows.Forms.Padding(2);
             this.panel7.Name = "panel7";
             this.panel7.Size = new System.Drawing.Size(738, 21);
             this.panel7.TabIndex = 25;
@@ -540,7 +492,7 @@ namespace DatabaseBackup
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(738, 467);
+            this.ClientSize = new System.Drawing.Size(738, 422);
             this.Controls.Add(this.panel6);
             this.Controls.Add(this.panel5);
             this.Controls.Add(this.panel2);
@@ -549,11 +501,12 @@ namespace DatabaseBackup
             this.Controls.Add(this.panel7);
             this.Margin = new System.Windows.Forms.Padding(2, 1, 2, 1);
             this.MaximizeBox = false;
-            this.MaximumSize = new System.Drawing.Size(917, 526);
+            this.MaximumSize = new System.Drawing.Size(915, 520);
             this.Name = "Main";
             this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Database Backup";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Main_FormClosing);
             this.Load += new System.EventHandler(this.Main_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Main_KeyDown);
             this.panel3.ResumeLayout(false);
@@ -590,7 +543,6 @@ namespace DatabaseBackup
         private System.Windows.Forms.Button button_save_settings;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox textBox_mysql_password;
-        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox textBox_mysql_username;
         private System.Windows.Forms.Button button_choose_mysql_location;
         private System.Windows.Forms.Button button_choose_backup_location;
@@ -602,11 +554,8 @@ namespace DatabaseBackup
         private System.Windows.Forms.DataGridViewTextBoxColumn ID;
         private System.Windows.Forms.DataGridViewTextBoxColumn DatabaseName;
         private System.Windows.Forms.Panel panel7;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.TextBox textBox_email_password;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.TextBox textBox_email_account;
-        private System.Windows.Forms.Button button_get_email_password;
         private System.Windows.Forms.Button button_backup;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button button_email_settings;
     }
 }

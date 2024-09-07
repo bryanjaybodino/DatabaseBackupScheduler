@@ -10,6 +10,10 @@
     </Email>
     <Password>
     </Password>
+    <Subject>
+    </Subject>
+    <CC>
+    </CC>
   </Mailer>
   <BackupLocation>C:\Backup_Files</BackupLocation>
   <BackupSchedule>10 AM</BackupSchedule>

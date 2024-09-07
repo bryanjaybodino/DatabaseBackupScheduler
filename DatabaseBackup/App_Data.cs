@@ -49,6 +49,8 @@ namespace DatabaseBackup
                         " <Mailer>\n" +
                             "  <Email></Email>\n" +
                             "  <Password></Password>\n" +
+                            "  <Subject></Subject>\n" +
+                            "  <CC></CC>\n" +
                         "  </Mailer>\n" +
                         $" <BackupLocation>{backupLocation}</BackupLocation>\n" +
                         $" <BackupSchedule>{backupTime}</BackupSchedule>\n" +
@@ -158,10 +160,12 @@ namespace DatabaseBackup
             public enum node
             {
                 Email,
-                Password
+                Password,
+                Subject,
+                CC
             }
 
-            public void update(string Email, string Password)
+            public void update(string Email, string Password, string Subject, string CC)
             {
                 string value = "";
                 XmlDocument xmlDocument = new XmlDocument();
@@ -174,6 +178,12 @@ namespace DatabaseBackup
 
                     XmlNodeList _Password = xmlNodeList.Item(i).SelectNodes("Password");
                     _Password[i].InnerText = Password;
+
+                    XmlNodeList _Subject = xmlNodeList.Item(i).SelectNodes("Subject");
+                    _Subject[i].InnerText = Subject;
+
+                    XmlNodeList _CC = xmlNodeList.Item(i).SelectNodes("CC");
+                    _CC[i].InnerText = CC.ToLower();
                 }
                 xmlDocument.Save(XMLPath);
             }
