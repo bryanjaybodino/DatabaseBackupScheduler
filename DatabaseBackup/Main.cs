@@ -12,6 +12,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using static DatabaseBackup.App_Data;
+using static DatabaseBackup.BackupList;
 using static System.Net.WebRequestMethods;
 
 namespace DatabaseBackup
@@ -191,6 +192,20 @@ namespace DatabaseBackup
             }
 
 
+        }
+        
+        private void button_backup_Click(object sender, EventArgs e)
+        {
+            if (!string.IsNullOrWhiteSpace(Main.Selected_Database))
+            {
+                CMD cmd = new CMD();
+                backupList.create_backup_directory();
+                cmd.command(Main.Selected_Database, true);
+            }
+            else
+            {
+                MessageBox.Show("Please select database", "Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
 }

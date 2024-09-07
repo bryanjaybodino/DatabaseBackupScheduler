@@ -30,7 +30,7 @@ namespace DatabaseBackup
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
@@ -60,6 +60,7 @@ namespace DatabaseBackup
             this.button_choose_mysql_location = new System.Windows.Forms.Button();
             this.button_choose_backup_location = new System.Windows.Forms.Button();
             this.panel6 = new System.Windows.Forms.Panel();
+            this.button_backup = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.DatabaseName = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -78,19 +79,19 @@ namespace DatabaseBackup
             // panel2
             // 
             this.panel2.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel2.Location = new System.Drawing.Point(1062, 75);
-            this.panel2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.panel2.Location = new System.Drawing.Point(708, 50);
+            this.panel2.Margin = new System.Windows.Forms.Padding(2, 1, 2, 1);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(45, 608);
+            this.panel2.Size = new System.Drawing.Size(30, 396);
             this.panel2.TabIndex = 4;
             // 
             // panel1
             // 
             this.panel1.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panel1.Location = new System.Drawing.Point(0, 75);
-            this.panel1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.panel1.Location = new System.Drawing.Point(0, 50);
+            this.panel1.Margin = new System.Windows.Forms.Padding(2, 1, 2, 1);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(48, 608);
+            this.panel1.Size = new System.Drawing.Size(32, 396);
             this.panel1.TabIndex = 3;
             // 
             // panel3
@@ -100,9 +101,8 @@ namespace DatabaseBackup
             this.panel3.Controls.Add(this.label4);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel3.Location = new System.Drawing.Point(0, 0);
-            this.panel3.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(1107, 75);
+            this.panel3.Size = new System.Drawing.Size(738, 50);
             this.panel3.TabIndex = 18;
             // 
             // panel4
@@ -110,10 +110,9 @@ namespace DatabaseBackup
             this.panel4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.panel4.Controls.Add(this.label_time);
             this.panel4.Controls.Add(this.label_ampm);
-            this.panel4.Location = new System.Drawing.Point(1702, 14);
-            this.panel4.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.panel4.Location = new System.Drawing.Point(1135, 9);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(280, 48);
+            this.panel4.Size = new System.Drawing.Size(187, 32);
             this.panel4.TabIndex = 21;
             // 
             // label_time
@@ -124,9 +123,10 @@ namespace DatabaseBackup
             this.label_time.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.label_time.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label_time.ForeColor = System.Drawing.Color.White;
-            this.label_time.Location = new System.Drawing.Point(216, 0);
+            this.label_time.Location = new System.Drawing.Point(139, 0);
+            this.label_time.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label_time.Name = "label_time";
-            this.label_time.Size = new System.Drawing.Size(32, 42);
+            this.label_time.Size = new System.Drawing.Size(24, 31);
             this.label_time.TabIndex = 19;
             this.label_time.Text = "-";
             // 
@@ -138,9 +138,10 @@ namespace DatabaseBackup
             this.label_ampm.Dock = System.Windows.Forms.DockStyle.Right;
             this.label_ampm.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.label_ampm.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label_ampm.Location = new System.Drawing.Point(248, 0);
+            this.label_ampm.Location = new System.Drawing.Point(163, 0);
+            this.label_ampm.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label_ampm.Name = "label_ampm";
-            this.label_ampm.Size = new System.Drawing.Size(32, 42);
+            this.label_ampm.Size = new System.Drawing.Size(24, 31);
             this.label_ampm.TabIndex = 20;
             this.label_ampm.Text = "-";
             // 
@@ -149,9 +150,10 @@ namespace DatabaseBackup
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.ForeColor = System.Drawing.Color.White;
-            this.label4.Location = new System.Drawing.Point(48, 14);
+            this.label4.Location = new System.Drawing.Point(32, 9);
+            this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(493, 47);
+            this.label4.Size = new System.Drawing.Size(332, 31);
             this.label4.TabIndex = 12;
             this.label4.Text = "MySql Database Backup";
             // 
@@ -169,26 +171,27 @@ namespace DatabaseBackup
             this.Delete,
             this.Backup});
             this.Action.Name = "Action";
-            this.Action.Size = new System.Drawing.Size(168, 100);
+            this.Action.Size = new System.Drawing.Size(131, 70);
             this.Action.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.Action_ItemClicked);
             // 
             // Path
             // 
             this.Path.Name = "Path";
-            this.Path.Size = new System.Drawing.Size(167, 32);
+            this.Path.Size = new System.Drawing.Size(130, 22);
             this.Path.Text = "Open Path";
             // 
             // Delete
             // 
             this.Delete.Name = "Delete";
-            this.Delete.Size = new System.Drawing.Size(167, 32);
+            this.Delete.Size = new System.Drawing.Size(130, 22);
             this.Delete.Text = "Delete";
             // 
             // Backup
             // 
             this.Backup.Name = "Backup";
-            this.Backup.Size = new System.Drawing.Size(167, 32);
+            this.Backup.Size = new System.Drawing.Size(130, 22);
             this.Backup.Text = "Backup";
+            this.Backup.Visible = false;
             // 
             // panel5
             // 
@@ -208,10 +211,10 @@ namespace DatabaseBackup
             this.panel5.Controls.Add(this.button_choose_mysql_location);
             this.panel5.Controls.Add(this.button_choose_backup_location);
             this.panel5.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panel5.Location = new System.Drawing.Point(48, 75);
-            this.panel5.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.panel5.Location = new System.Drawing.Point(32, 50);
+            this.panel5.Margin = new System.Windows.Forms.Padding(2, 1, 2, 1);
             this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(353, 608);
+            this.panel5.Size = new System.Drawing.Size(235, 396);
             this.panel5.TabIndex = 20;
             // 
             // button_get_email_password
@@ -222,9 +225,10 @@ namespace DatabaseBackup
             this.button_get_email_password.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button_get_email_password.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button_get_email_password.ForeColor = System.Drawing.Color.White;
-            this.button_get_email_password.Location = new System.Drawing.Point(171, 251);
+            this.button_get_email_password.Location = new System.Drawing.Point(114, 167);
+            this.button_get_email_password.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.button_get_email_password.Name = "button_get_email_password";
-            this.button_get_email_password.Size = new System.Drawing.Size(141, 35);
+            this.button_get_email_password.Size = new System.Drawing.Size(94, 23);
             this.button_get_email_password.TabIndex = 24;
             this.button_get_email_password.Text = "Get Password";
             this.button_get_email_password.UseVisualStyleBackColor = false;
@@ -234,19 +238,20 @@ namespace DatabaseBackup
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(15, 222);
+            this.label5.Location = new System.Drawing.Point(10, 148);
+            this.label5.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(138, 22);
+            this.label5.Size = new System.Drawing.Size(96, 15);
             this.label5.TabIndex = 31;
             this.label5.Text = "Email Password";
             // 
             // textBox_email_password
             // 
             this.textBox_email_password.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox_email_password.Location = new System.Drawing.Point(16, 251);
-            this.textBox_email_password.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.textBox_email_password.Location = new System.Drawing.Point(11, 167);
+            this.textBox_email_password.Margin = new System.Windows.Forms.Padding(2, 1, 2, 1);
             this.textBox_email_password.Name = "textBox_email_password";
-            this.textBox_email_password.Size = new System.Drawing.Size(149, 31);
+            this.textBox_email_password.Size = new System.Drawing.Size(101, 23);
             this.textBox_email_password.TabIndex = 30;
             this.textBox_email_password.UseSystemPasswordChar = true;
             // 
@@ -254,29 +259,29 @@ namespace DatabaseBackup
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(15, 156);
+            this.label6.Location = new System.Drawing.Point(10, 104);
+            this.label6.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(124, 22);
+            this.label6.Size = new System.Drawing.Size(85, 15);
             this.label6.TabIndex = 29;
             this.label6.Text = "Email Account";
             // 
             // textBox_email_account
             // 
             this.textBox_email_account.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox_email_account.Location = new System.Drawing.Point(16, 185);
-            this.textBox_email_account.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.textBox_email_account.Location = new System.Drawing.Point(11, 123);
+            this.textBox_email_account.Margin = new System.Windows.Forms.Padding(2, 1, 2, 1);
             this.textBox_email_account.Name = "textBox_email_account";
-            this.textBox_email_account.Size = new System.Drawing.Size(292, 31);
+            this.textBox_email_account.Size = new System.Drawing.Size(196, 23);
             this.textBox_email_account.TabIndex = 28;
             // 
             // checkBox_overwrite_backup_filename
             // 
             this.checkBox_overwrite_backup_filename.AutoSize = true;
             this.checkBox_overwrite_backup_filename.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.checkBox_overwrite_backup_filename.Location = new System.Drawing.Point(16, 491);
-            this.checkBox_overwrite_backup_filename.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.checkBox_overwrite_backup_filename.Location = new System.Drawing.Point(11, 327);
             this.checkBox_overwrite_backup_filename.Name = "checkBox_overwrite_backup_filename";
-            this.checkBox_overwrite_backup_filename.Size = new System.Drawing.Size(277, 29);
+            this.checkBox_overwrite_backup_filename.Size = new System.Drawing.Size(190, 20);
             this.checkBox_overwrite_backup_filename.TabIndex = 27;
             this.checkBox_overwrite_backup_filename.Text = "Overwrite Backup Filename";
             this.checkBox_overwrite_backup_filename.UseVisualStyleBackColor = true;
@@ -285,9 +290,10 @@ namespace DatabaseBackup
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(15, 415);
+            this.label3.Location = new System.Drawing.Point(10, 277);
+            this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(150, 22);
+            this.label3.Size = new System.Drawing.Size(103, 15);
             this.label3.TabIndex = 26;
             this.label3.Text = "Backup Schedule";
             // 
@@ -322,10 +328,9 @@ namespace DatabaseBackup
             "11 PM",
             "12 AM",
             "12 PM"});
-            this.comboBox_backup_schedule.Location = new System.Drawing.Point(16, 444);
-            this.comboBox_backup_schedule.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.comboBox_backup_schedule.Location = new System.Drawing.Point(11, 296);
             this.comboBox_backup_schedule.Name = "comboBox_backup_schedule";
-            this.comboBox_backup_schedule.Size = new System.Drawing.Size(292, 33);
+            this.comboBox_backup_schedule.Size = new System.Drawing.Size(196, 24);
             this.comboBox_backup_schedule.TabIndex = 25;
             // 
             // button_save_settings
@@ -335,10 +340,9 @@ namespace DatabaseBackup
             this.button_save_settings.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button_save_settings.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button_save_settings.ForeColor = System.Drawing.Color.White;
-            this.button_save_settings.Location = new System.Drawing.Point(16, 531);
-            this.button_save_settings.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.button_save_settings.Location = new System.Drawing.Point(11, 354);
             this.button_save_settings.Name = "button_save_settings";
-            this.button_save_settings.Size = new System.Drawing.Size(296, 61);
+            this.button_save_settings.Size = new System.Drawing.Size(197, 41);
             this.button_save_settings.TabIndex = 24;
             this.button_save_settings.Text = "SAVE SETTINGS";
             this.button_save_settings.UseVisualStyleBackColor = false;
@@ -348,19 +352,20 @@ namespace DatabaseBackup
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(15, 352);
+            this.label2.Location = new System.Drawing.Point(10, 235);
+            this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(153, 22);
+            this.label2.Size = new System.Drawing.Size(104, 15);
             this.label2.TabIndex = 23;
             this.label2.Text = "MySQL Password";
             // 
             // textBox_mysql_password
             // 
             this.textBox_mysql_password.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox_mysql_password.Location = new System.Drawing.Point(16, 379);
-            this.textBox_mysql_password.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.textBox_mysql_password.Location = new System.Drawing.Point(11, 253);
+            this.textBox_mysql_password.Margin = new System.Windows.Forms.Padding(2, 1, 2, 1);
             this.textBox_mysql_password.Name = "textBox_mysql_password";
-            this.textBox_mysql_password.Size = new System.Drawing.Size(292, 31);
+            this.textBox_mysql_password.Size = new System.Drawing.Size(196, 23);
             this.textBox_mysql_password.TabIndex = 22;
             this.textBox_mysql_password.UseSystemPasswordChar = true;
             // 
@@ -368,29 +373,30 @@ namespace DatabaseBackup
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(19, 289);
+            this.label1.Location = new System.Drawing.Point(13, 193);
+            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(156, 22);
+            this.label1.Size = new System.Drawing.Size(108, 15);
             this.label1.TabIndex = 21;
             this.label1.Text = "MySQL Username";
             // 
             // textBox_mysql_username
             // 
             this.textBox_mysql_username.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox_mysql_username.Location = new System.Drawing.Point(16, 318);
-            this.textBox_mysql_username.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.textBox_mysql_username.Location = new System.Drawing.Point(11, 212);
+            this.textBox_mysql_username.Margin = new System.Windows.Forms.Padding(2, 1, 2, 1);
             this.textBox_mysql_username.Name = "textBox_mysql_username";
-            this.textBox_mysql_username.Size = new System.Drawing.Size(292, 31);
+            this.textBox_mysql_username.Size = new System.Drawing.Size(196, 23);
             this.textBox_mysql_username.TabIndex = 20;
             this.textBox_mysql_username.UseSystemPasswordChar = true;
             // 
             // button_choose_mysql_location
             // 
             this.button_choose_mysql_location.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button_choose_mysql_location.Location = new System.Drawing.Point(12, 84);
-            this.button_choose_mysql_location.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.button_choose_mysql_location.Location = new System.Drawing.Point(8, 56);
+            this.button_choose_mysql_location.Margin = new System.Windows.Forms.Padding(2, 1, 2, 1);
             this.button_choose_mysql_location.Name = "button_choose_mysql_location";
-            this.button_choose_mysql_location.Size = new System.Drawing.Size(298, 51);
+            this.button_choose_mysql_location.Size = new System.Drawing.Size(199, 34);
             this.button_choose_mysql_location.TabIndex = 19;
             this.button_choose_mysql_location.Text = "MySQL Folder Location";
             this.button_choose_mysql_location.UseVisualStyleBackColor = true;
@@ -399,10 +405,10 @@ namespace DatabaseBackup
             // button_choose_backup_location
             // 
             this.button_choose_backup_location.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button_choose_backup_location.Location = new System.Drawing.Point(12, 28);
-            this.button_choose_backup_location.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.button_choose_backup_location.Location = new System.Drawing.Point(8, 19);
+            this.button_choose_backup_location.Margin = new System.Windows.Forms.Padding(2, 1, 2, 1);
             this.button_choose_backup_location.Name = "button_choose_backup_location";
-            this.button_choose_backup_location.Size = new System.Drawing.Size(300, 46);
+            this.button_choose_backup_location.Size = new System.Drawing.Size(200, 31);
             this.button_choose_backup_location.TabIndex = 18;
             this.button_choose_backup_location.Text = "Choose Backup Location";
             this.button_choose_backup_location.UseVisualStyleBackColor = true;
@@ -410,40 +416,59 @@ namespace DatabaseBackup
             // 
             // panel6
             // 
+            this.panel6.Controls.Add(this.button_backup);
             this.panel6.Controls.Add(this.dataGridView1);
             this.panel6.Controls.Add(this.button_how);
             this.panel6.Controls.Add(this.textBox_mysql_folder_location);
             this.panel6.Controls.Add(this.textBox_backup_location);
             this.panel6.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel6.Location = new System.Drawing.Point(401, 75);
+            this.panel6.Location = new System.Drawing.Point(267, 50);
+            this.panel6.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.panel6.Name = "panel6";
-            this.panel6.Size = new System.Drawing.Size(661, 608);
+            this.panel6.Size = new System.Drawing.Size(441, 396);
             this.panel6.TabIndex = 21;
+            // 
+            // button_backup
+            // 
+            this.button_backup.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.button_backup.BackColor = System.Drawing.Color.DodgerBlue;
+            this.button_backup.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.button_backup.FlatAppearance.BorderSize = 0;
+            this.button_backup.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button_backup.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button_backup.ForeColor = System.Drawing.Color.White;
+            this.button_backup.Location = new System.Drawing.Point(359, 92);
+            this.button_backup.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.button_backup.Name = "button_backup";
+            this.button_backup.Size = new System.Drawing.Size(82, 27);
+            this.button_backup.TabIndex = 24;
+            this.button_backup.Text = "Backup";
+            this.button_backup.UseVisualStyleBackColor = false;
+            this.button_backup.Click += new System.EventHandler(this.button_backup_Click);
             // 
             // dataGridView1
             // 
             this.dataGridView1.AllowUserToDeleteRows = false;
             this.dataGridView1.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.dataGridView1.ColumnHeadersHeight = 29;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.ID,
             this.DatabaseName});
             this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.dataGridView1.Location = new System.Drawing.Point(0, 185);
-            this.dataGridView1.Margin = new System.Windows.Forms.Padding(4);
+            this.dataGridView1.Location = new System.Drawing.Point(0, 124);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
             this.dataGridView1.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView1.Size = new System.Drawing.Size(661, 423);
+            this.dataGridView1.Size = new System.Drawing.Size(441, 272);
             this.dataGridView1.TabIndex = 13;
             this.dataGridView1.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.CellClick);
             this.dataGridView1.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.CellValueChanged);
@@ -471,9 +496,10 @@ namespace DatabaseBackup
             // button_how
             // 
             this.button_how.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.button_how.Location = new System.Drawing.Point(538, 37);
+            this.button_how.Location = new System.Drawing.Point(359, 25);
+            this.button_how.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.button_how.Name = "button_how";
-            this.button_how.Size = new System.Drawing.Size(123, 87);
+            this.button_how.Size = new System.Drawing.Size(82, 58);
             this.button_how.TabIndex = 23;
             this.button_how.Text = "How to use";
             this.button_how.UseVisualStyleBackColor = true;
@@ -482,47 +508,48 @@ namespace DatabaseBackup
             // textBox_mysql_folder_location
             // 
             this.textBox_mysql_folder_location.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox_mysql_folder_location.Location = new System.Drawing.Point(4, 93);
-            this.textBox_mysql_folder_location.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.textBox_mysql_folder_location.Location = new System.Drawing.Point(3, 62);
+            this.textBox_mysql_folder_location.Margin = new System.Windows.Forms.Padding(2, 1, 2, 1);
             this.textBox_mysql_folder_location.Name = "textBox_mysql_folder_location";
             this.textBox_mysql_folder_location.ReadOnly = true;
-            this.textBox_mysql_folder_location.Size = new System.Drawing.Size(511, 31);
+            this.textBox_mysql_folder_location.Size = new System.Drawing.Size(342, 23);
             this.textBox_mysql_folder_location.TabIndex = 21;
             // 
             // textBox_backup_location
             // 
             this.textBox_backup_location.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox_backup_location.Location = new System.Drawing.Point(4, 37);
-            this.textBox_backup_location.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.textBox_backup_location.Location = new System.Drawing.Point(3, 25);
+            this.textBox_backup_location.Margin = new System.Windows.Forms.Padding(2, 1, 2, 1);
             this.textBox_backup_location.Name = "textBox_backup_location";
             this.textBox_backup_location.ReadOnly = true;
-            this.textBox_backup_location.Size = new System.Drawing.Size(511, 31);
+            this.textBox_backup_location.Size = new System.Drawing.Size(342, 23);
             this.textBox_backup_location.TabIndex = 20;
             // 
             // panel7
             // 
             this.panel7.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel7.Location = new System.Drawing.Point(0, 683);
+            this.panel7.Location = new System.Drawing.Point(0, 446);
+            this.panel7.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.panel7.Name = "panel7";
-            this.panel7.Size = new System.Drawing.Size(1107, 31);
+            this.panel7.Size = new System.Drawing.Size(738, 21);
             this.panel7.TabIndex = 25;
             // 
             // Main
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(144F, 144F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(1107, 714);
+            this.ClientSize = new System.Drawing.Size(738, 467);
             this.Controls.Add(this.panel6);
             this.Controls.Add(this.panel5);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.panel7);
-            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.Margin = new System.Windows.Forms.Padding(2, 1, 2, 1);
             this.MaximizeBox = false;
-            this.MaximumSize = new System.Drawing.Size(1368, 770);
+            this.MaximumSize = new System.Drawing.Size(917, 526);
             this.Name = "Main";
             this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -580,5 +607,6 @@ namespace DatabaseBackup
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.TextBox textBox_email_account;
         private System.Windows.Forms.Button button_get_email_password;
+        private System.Windows.Forms.Button button_backup;
     }
 }
