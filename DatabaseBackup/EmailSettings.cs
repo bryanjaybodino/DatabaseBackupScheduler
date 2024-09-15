@@ -10,13 +10,15 @@ namespace DatabaseBackup
         {
             InitializeComponent();
         }
+
         App_Data.MailerNode mailerNode = new App_Data.MailerNode();
+        App_XMLCaller xml = new App_XMLCaller();
         public void Open()
         {
-            textBox_email_account.Text = mailerNode.data(App_Data.MailerNode.node.Email);
-            textBox_email_password.Text = mailerNode.data(App_Data.MailerNode.node.Password);
-            textBox_email_subject.Text = mailerNode.data(App_Data.MailerNode.node.Subject);
-            textBox_email_cc.Text = mailerNode.data(App_Data.MailerNode.node.CC);
+            textBox_email_account.Text = xml.GetEmailOrDefault();
+            textBox_email_password.Text = xml.GetEmailPasswordOrDefault();
+            textBox_email_subject.Text = xml.GetEmailSubjectOrDefault();
+            textBox_email_cc.Text = xml.GetEmailCCOrDefault();
             this.Show();
         }
         private void button_get_email_password_Click(object sender, EventArgs e)
@@ -55,10 +57,16 @@ namespace DatabaseBackup
                 MessageBox.Show(er.Message, "Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
-        private void button_cancel_Click(object sender, EventArgs e)
+        private void button_close_Click(object sender, EventArgs e)
         {
             this.Hide();
+        }
+        private async void button_send_test_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Please Wait..", "Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            App_Mailer app_Mailer = new App_Mailer();
+            mailerNode.update(textBox_email_account.Text, textBox_email_password.Text, textBox_email_subject.Text, textBox_email_cc.Text);
+            await app_Mailer.Send(xml.GetEmailOrDefault(), "Database Backup Test Message", null,true,true);
         }
     }
 }

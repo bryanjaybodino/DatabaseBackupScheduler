@@ -33,7 +33,8 @@ namespace DatabaseBackup
                 {
                     Directory.CreateDirectory(backupLocation);
                 }
-                string location = "C:\\xampp\\mysql\\bin";
+                string hostname = "localhost";
+                string port = "3306";
                 string backupTime = "12 AM";
                 string overwrite = "True";
                 string mysql_username = "root";
@@ -43,8 +44,9 @@ namespace DatabaseBackup
                     "<Settings>\n" +
                         " <MySQL>\n" +
                             $"  <User>{mysql_username}</User>\n" +
-                            "  <Password></Password>\n" +
-                            $"  <Location>{location}</Location>\n" +
+                            $"  <Password></Password>\n" +
+                            $"  <Hostname>{hostname}</Hostname>\n" +
+                            $"  <Port>{port}</Port>\n" +
                         "  </MySQL>\n" +
                         " <Mailer>\n" +
                             "  <Email></Email>\n" +
@@ -111,10 +113,11 @@ namespace DatabaseBackup
             {
                 User,
                 Password,
-                Location
+                Hostname,
+                Port
             }
 
-            public void update(string User, string Password, string Location)
+            public void update(string User, string Password, string Hostname,string Port)
             {
                 string value = "";
                 XmlDocument xmlDocument = new XmlDocument();
@@ -128,8 +131,11 @@ namespace DatabaseBackup
                     XmlNodeList _Password = xmlNodeList.Item(i).SelectNodes("Password");
                     _Password[i].InnerText = Password;
 
-                    XmlNodeList _Location = xmlNodeList.Item(i).SelectNodes("Location");
-                    _Location[i].InnerText = Location;
+                    XmlNodeList _Hostname = xmlNodeList.Item(i).SelectNodes("Hostname");
+                    _Hostname[i].InnerText = Hostname;
+
+                    XmlNodeList _Port = xmlNodeList.Item(i).SelectNodes("Port");
+                    _Port[i].InnerText = Port;
 
                 }
                 xmlDocument.Save(XMLPath);

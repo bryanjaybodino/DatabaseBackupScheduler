@@ -12,7 +12,7 @@ using System.Xml;
 
 namespace DatabaseBackup
 {
-    class BackupList
+    class App_Databases
     {
         public static string XMLPath = App_Data.DefaultPath + @"\database.xml";
         public static void CreatePath()
@@ -69,8 +69,13 @@ namespace DatabaseBackup
 
             public void insert(string name)
             {
-                BackupList backupList = new BackupList();
-                if (backupList.mysql_login_success(name))
+                App_Databases backupList = new App_Databases();
+                App_Data.MySQLNode mySQLNode = new App_Data.MySQLNode();
+                string user = mySQLNode.data(App_Data.MySQLNode.node.User);
+                string password = mySQLNode.data(App_Data.MySQLNode.node.Password);
+                string hostname = mySQLNode.data(App_Data.MySQLNode.node.Hostname);
+                string port = mySQLNode.data(App_Data.MySQLNode.node.Port);
+                if (backupList.mysql_login_success(user,password,hostname,port, name))
                 {
                     XmlDocument xmlDocument = new XmlDocument();
                     xmlDocument.Load(XMLPath);
@@ -153,7 +158,7 @@ namespace DatabaseBackup
 
         public void ItemClicked(object sender, ToolStripItemClickedEventArgs e)
         {
-            CMD cmd = new CMD();
+            App_CMD cmd = new App_CMD();
             if (e.ClickedItem.Name == "Delete")
             {
                 Database database = new Database();
@@ -171,15 +176,14 @@ namespace DatabaseBackup
             }
         }
 
-        public bool mysql_login_success(string name)
+        public bool mysql_login_success(string user,string password,string hostname,string port,string database="")
         {
-            App_Data.MySQLNode mySQLNode = new App_Data.MySQLNode();
             bool isSuccess = false;
-            string user = mySQLNode.data(App_Data.MySQLNode.node.User);
-            string password = mySQLNode.data(App_Data.MySQLNode.node.Password);
             try
             {
-                MySqlConnection mySQLCon = new MySqlConnection("server=localhost;user id=" + user + "; password = " + password + ";database=" + name);
+                string CheckDatabase = (database == "") ? "" : $"database={database}";
+                string connectionString = $"server={hostname};port={port};user id={user};password={password};{CheckDatabase}";
+                MySqlConnection mySQLCon = new MySqlConnection(connectionString);
                 mySQLCon.Open();
                 if (mySQLCon.State == ConnectionState.Open)
                 {
@@ -189,10 +193,9 @@ namespace DatabaseBackup
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show($"{ex.Message}", "Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             return isSuccess;
-
         }
         public void create_backup_directory() // If ever na binura na yung backup directory tapos nag backup parin ng database dapat ma create ulit yung mga folders
         {

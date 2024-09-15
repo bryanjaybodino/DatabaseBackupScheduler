@@ -76,15 +76,16 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Data.cs" />
-    <Compile Include="BackupList.cs" />
-    <Compile Include="CMD.cs" />
+    <Compile Include="App_Databases.cs" />
+    <Compile Include="App_CMD.cs" />
+    <Compile Include="App_XMLCaller.cs" />
     <Compile Include="EmailSettings.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="EmailSettings.Designer.cs">
       <DependentUpon>EmailSettings.cs</DependentUpon>
     </Compile>
-    <Compile Include="Mailer.cs" />
+    <Compile Include="App_Mailer.cs" />
     <Compile Include="Main.cs">
       <SubType>Form</SubType>
     </Compile>

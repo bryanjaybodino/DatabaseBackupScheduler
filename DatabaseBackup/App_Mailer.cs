@@ -12,36 +12,31 @@ using System.Windows.Forms;
 namespace DatabaseBackup
 {
     //vilhnqvhzfwfyktd
-    internal class Mailer
+    internal class App_Mailer
     {
         private static readonly Regex EmailRegex = new Regex(
         @"^[^@\s]+@[^@\s]+\.[^@\s]+$",
         RegexOptions.Compiled | RegexOptions.IgnoreCase);
 
-        private  bool IsValidEmail(string email)
+        private bool IsValidEmail(string email)
         {
             if (string.IsNullOrWhiteSpace(email))
                 return false;
 
             return EmailRegex.IsMatch(email);
         }
-        private readonly App_Data.MailerNode _mailerNode;
 
-        public Mailer()
-        {
-            _mailerNode = new App_Data.MailerNode();
-        }
-
-        public async Task Send(string to, string body, List<string> filePaths, bool isZip = false)
+        App_XMLCaller xml = new App_XMLCaller();
+        public async Task Send(string to, string body, List<string> filePaths, bool isZip = false, bool showMessage = false)
         {
             try
             {
                 if (IsValidEmail(to))
                 {
-                    var from = _mailerNode.data(App_Data.MailerNode.node.Email);
-                    var password = _mailerNode.data(App_Data.MailerNode.node.Password);
-                    var ccList = _mailerNode.data(App_Data.MailerNode.node.CC);
-                    var subject = _mailerNode.data(App_Data.MailerNode.node.Subject);
+                    var from = xml.GetEmailOrDefault();
+                    var password = xml.GetEmailPasswordOrDefault();
+                    var ccList = xml.GetEmailCCOrDefault();
+                    var subject = xml.GetEmailSubjectOrDefault();
 
                     using (var mail = new MailMessage(from, to))
                     using (var client = new SmtpClient("smtp.gmail.com", 587))
@@ -62,11 +57,16 @@ namespace DatabaseBackup
 
                         if (isZip)
                         {
-                            string zipFilePath = CreateZipFromFiles(filePaths);
-                            if (zipFilePath != null)
+
+                            if (filePaths != null)
                             {
-                                mail.Attachments.Add(new Attachment(zipFilePath));
+                                string zipFilePath = CreateZipFromFiles(filePaths);
+                                if (zipFilePath != null)
+                                {
+                                    mail.Attachments.Add(new Attachment(zipFilePath));
+                                }
                             }
+
                         }
                         else
                         {
@@ -80,18 +80,26 @@ namespace DatabaseBackup
                             if (e.Error != null)
                             {
                                 // Handle the error here
-                                //MessageBox.Show($"Error sending email: {e.Error.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                if (showMessage)
+                                {
+                                    MessageBox.Show($"Error sending email: {e.Error.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                }
+
                             }
                         };
 
                         await client.SendMailAsync(mail);
+                        if (showMessage)
+                        {
+                            MessageBox.Show("Message has been sent successfully", "Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        }
                     }
-                }      
+                }
             }
             catch (Exception ex)
             {
-                // Log or handle the exception
-                //MessageBox.Show($"Exception: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                // MessageBox.Show($"Exception: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
             }
         }
 
@@ -99,7 +107,9 @@ namespace DatabaseBackup
         {
             if (string.IsNullOrWhiteSpace(ccList)) return;
 
-            var ccAddresses = ccList.Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries)
+
+
+            var ccAddresses = ccList.Split(new[] { ',', '\r', '\n', ';' }, StringSplitOptions.RemoveEmptyEntries)
                                     .Select(email => email.Trim())
                                     .Distinct()
                                     .Where(email => !string.Equals(email, to, StringComparison.OrdinalIgnoreCase))
@@ -147,22 +157,28 @@ namespace DatabaseBackup
         {
             try
             {
+
+
                 string zipFilePath = Path.Combine(Path.GetTempPath(), $"Attachments_{DateTime.Now.Ticks}.zip");
-                using (var zip = ZipFile.Open(zipFilePath, ZipArchiveMode.Create))
+                if (filePaths != null)
                 {
-                    foreach (var filePath in filePaths)
+                    using (var zip = ZipFile.Open(zipFilePath, ZipArchiveMode.Create))
                     {
-                        if (System.IO.File.Exists(filePath))
+                        foreach (var filePath in filePaths)
                         {
-                            zip.CreateEntryFromFile(filePath, Path.GetFileName(filePath));
-                        }
-                        else
-                        {
-                            // Handle case where file does not exist
-                            //MessageBox.Show($"File not found: {filePath}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            if (System.IO.File.Exists(filePath))
+                            {
+                                zip.CreateEntryFromFile(filePath, Path.GetFileName(filePath));
+                            }
+                            else
+                            {
+                                // Handle case where file does not exist
+                                //MessageBox.Show($"File not found: {filePath}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            }
                         }
                     }
                 }
+
                 return zipFilePath;
             }
             catch (Exception ex)

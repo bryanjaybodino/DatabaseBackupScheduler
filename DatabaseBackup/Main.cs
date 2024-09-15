@@ -12,8 +12,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using static DatabaseBackup.App_Data;
-using static DatabaseBackup.BackupList;
-using static System.Net.WebRequestMethods;
+
 
 namespace DatabaseBackup
 {
@@ -24,56 +23,59 @@ namespace DatabaseBackup
         {
             InitializeComponent();
         }
-        BackupList backupList = new BackupList();
+        App_Databases backup = new App_Databases();
+        App_Data.MailerNode mailerNode = new App_Data.MailerNode();
         App_Data.ParentNode parentNode = new App_Data.ParentNode();
         App_Data.MySQLNode mySQLNode = new App_Data.MySQLNode();
-        App_Data.MailerNode mailerNode = new App_Data.MailerNode();
+        App_XMLCaller xml = new App_XMLCaller();
+        App_CMD cmd = new App_CMD();
+
+
+
+
         private void Main_Load(object sender, EventArgs e)
         {
             App_Data.CreatePath();
-            BackupList.CreatePath();
+            App_Databases.CreatePath();
 
-            textBox_backup_location.Text = parentNode.data(App_Data.ParentNode.node.BackupLocation);
-            textBox_mysql_folder_location.Text = mySQLNode.data(App_Data.MySQLNode.node.Location);
-            textBox_mysql_username.Text = mySQLNode.data(App_Data.MySQLNode.node.User);
-            textBox_mysql_password.Text = mySQLNode.data(App_Data.MySQLNode.node.Password);
-            comboBox_backup_schedule.Text = parentNode.data(App_Data.ParentNode.node.BackupSchedule);
-
-
-
-            bool Overtwrite_Backup = (parentNode.data(App_Data.ParentNode.node.OverwriteBackup).ToUpper() == "TRUE") ? true : false;
-            checkBox_overwrite_backup_filename.Checked = Overtwrite_Backup;
-            backupList.bind(dataGridView1);
+            textBox_backup_location.Text = xml.GetBackupLocationOrDefault();
+            textBox_mysql_hostname.Text = xml.GetHostNameOrDefault();
+            textBox_mysql_username.Text = xml.GetUsernameOrDefault();
+            textBox_mysql_password.Text = xml.GetPasswordOrDefault();
+            comboBox_backup_schedule.Text = xml.GetBackupScheduleOrDefault();
+            textBox_mysql_port.Text = xml.GetPortOrDefault();
+            checkBox_overwrite_backup_filename.Checked = xml.GetOverwriteBackupOrDefault();
+            backup.bind(dataGridView1);
             dataGridView1.ClearSelection();
         }
         private void button_choose_path(object sender, EventArgs e)
         {
-            Button button = (sender as Button);
             FolderBrowserDialog folderBrowserDialog = new FolderBrowserDialog();
             if (folderBrowserDialog.ShowDialog() == DialogResult.OK)
             {
-                if (button.Name == "button_choose_backup_location")
-                {
-                    textBox_backup_location.Text = folderBrowserDialog.SelectedPath;
-                }
-                else if (button.Name == "button_choose_mysql_location")
-                {
-                    textBox_mysql_folder_location.Text = folderBrowserDialog.SelectedPath;
-                }
+                textBox_backup_location.Text = folderBrowserDialog.SelectedPath;
             }
         }
         private void button_save_settings_Click(object sender, EventArgs e)
         {
             try
             {
-                parentNode.update(textBox_backup_location.Text, comboBox_backup_schedule.Text, checkBox_overwrite_backup_filename.Checked.ToString());
-                mySQLNode.update(textBox_mysql_username.Text, textBox_mysql_password.Text, textBox_mysql_folder_location.Text);
-                MessageBox.Show("Settings has been saved successfully!", "Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                string user = textBox_mysql_username.Text;
+                string password = textBox_mysql_password.Text;
+                string hostname = textBox_mysql_hostname.Text;
+                string port = textBox_mysql_port.Text;
+
+                if (backup.mysql_login_success(user, password, hostname, port))
+                {
+                    parentNode.update(textBox_backup_location.Text, comboBox_backup_schedule.Text, checkBox_overwrite_backup_filename.Checked.ToString());
+                    mySQLNode.update(textBox_mysql_username.Text, textBox_mysql_password.Text, textBox_mysql_hostname.Text, textBox_mysql_port.Text);
+                    MessageBox.Show("Settings has been saved successfully!", "Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
             }
             catch (Exception er)
             {
                 MessageBox.Show(er.Message, "Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            } 
+            }
         }
 
         private async void timer_Tick(object sender, EventArgs e)
@@ -81,28 +83,29 @@ namespace DatabaseBackup
             label_ampm.Text = DateTime.Now.ToString("tt");
             label_time.Text = DateTime.Now.ToString("hh:mm:ss");
             if (
-                DateTime.Now.ToString("hh tt").ToUpper() == parentNode.data(App_Data.ParentNode.node.BackupSchedule) &&
+                DateTime.Now.ToString("hh tt").ToUpper() == xml.GetBackupScheduleOrDefault() &&
                 DateTime.Now.ToString("mm").ToUpper() == "01" &&
                 DateTime.Now.ToString("ss").ToUpper() == "01")
             {
-                CMD cmd = new CMD();
+          
                 DataTable table = (DataTable)dataGridView1.DataSource;
                 for (int i = 0; i < table.Rows.Count; i++)
                 {
                     try
                     {
                         string databasename = table.Rows[i]["DatabaseName"].ToString();
-                        string backupLocation = parentNode.data(App_Data.ParentNode.node.BackupLocation);
+                        string backupLocation = xml.GetBackupLocationOrDefault();
                         string fullpath = backupLocation + "\\" + databasename;
                         if (Directory.Exists(fullpath))
                         {
+                          
                             cmd.command(databasename, false);
                             await Task.Delay(5000);
 
                             List<string> attachments = new List<string>();
                             attachments.Add(fullpath + "\\" + databasename + ".sql");
-                            Mailer mailer = new Mailer();
-                            await mailer.Send(mailerNode.data(App_Data.MailerNode.node.Email), $"{databasename} Your Database Backup", attachments, true);
+                            App_Mailer mailer = new App_Mailer();
+                            await mailer.Send(xml.GetEmailOrDefault(), $"Your Database Backup {databasename}", attachments, true);
                         }
                     }
                     catch { }
@@ -116,13 +119,13 @@ namespace DatabaseBackup
         {
             if (e.RowIndex > -1)
             {
-                backupList.CellContent(sender, e);
+                backup.CellContent(sender, e);
             }
         }
         private void Action_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
         {
-            backupList.ItemClicked(sender, e);
-            backupList.bind(dataGridView1);
+            backup.ItemClicked(sender, e);
+            backup.bind(dataGridView1);
         }
         public static string Selected_Database = "";
         private void CellClick(object sender, DataGridViewCellEventArgs e)
@@ -145,15 +148,6 @@ namespace DatabaseBackup
             }
             catch { }
         }
-
-        private void Main_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.S && e.Control && e.Shift)
-            {
-
-            }
-        }
-
         private void button_how_Click(object sender, EventArgs e)
         {
             string msg = "" +
@@ -167,7 +161,7 @@ namespace DatabaseBackup
                 "Set your backup time schedule and click the save setting button.\n\n" +
 
                 "4. Manual backup?\n" +
-                "Left click the row and backup button.\n" +
+                "Left click the row and backup button.\n\n" +
 
                 "5. How to find backup files?\n" +
                 "Left click the row and right click and choose path";
@@ -175,18 +169,12 @@ namespace DatabaseBackup
             MessageBox.Show(msg, "How to use", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
-        private void button_get_email_password_Click(object sender, EventArgs e)
-        {
-
-
-        }
-
         private void button_backup_Click(object sender, EventArgs e)
         {
             if (!string.IsNullOrWhiteSpace(Main.Selected_Database))
             {
-                CMD cmd = new CMD();
-                backupList.create_backup_directory();
+                App_CMD cmd = new App_CMD();
+                backup.create_backup_directory();
                 cmd.command(Main.Selected_Database, true);
             }
             else
@@ -203,7 +191,7 @@ namespace DatabaseBackup
                 emailSettings.Open();
             }
             else
-            {  
+            {
                 emailSettings.BringToFront(); // Bring the form to the front if it is already visible
             }
         }
@@ -211,6 +199,27 @@ namespace DatabaseBackup
         private void Main_FormClosing(object sender, FormClosingEventArgs e)
         {
             emailSettings.Close();
+        }
+
+        private void textBox_mysql_port_TextChanged(object sender, EventArgs e)
+        {
+            string text = textBox_mysql_port.Text;
+            string newText = string.Empty;
+
+            foreach (char c in text)
+            {
+                if (char.IsDigit(c))
+                {
+                    newText += c;
+                }
+            }
+
+            // Update the TextBox content if it has changed
+            if (textBox_mysql_port.Text != newText)
+            {
+                textBox_mysql_port.Text = newText;
+                textBox_mysql_port.SelectionStart = textBox_mysql_port.Text.Length; // Move cursor to the end
+            }
         }
     }
 }

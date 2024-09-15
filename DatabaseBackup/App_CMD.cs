@@ -7,25 +7,31 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static DatabaseBackup.App_Data;
 
 namespace DatabaseBackup
 {
-    class CMD
+    class App_CMD
     {
+
+        App_XMLCaller xml = new App_XMLCaller();
+        void CreateDirectoryIfNotExists(string path)
+        {
+            if (!Directory.Exists(path))
+            {
+                Directory.CreateDirectory(path);
+            }
+        }
 
         public async void open_folder(string DatabaseName)
         {
             await Task.Run(() =>
             {
-                App_Data.ParentNode parentNode = new App_Data.ParentNode();
-                string backup_location = parentNode.data(App_Data.ParentNode.node.BackupLocation);
+                string backup_location = xml.GetBackupLocationOrDefault();
                 ProcessStartInfo processStart = new ProcessStartInfo(@"C:\Windows\system32\cmd.exe");
                 processStart.WindowStyle = ProcessWindowStyle.Hidden;
                 string destination = backup_location + "\\" + Main.Selected_Database + "\\";
-                if (!Directory.Exists(destination))
-                {
-                    Directory.CreateDirectory(destination);
-                }
+                CreateDirectoryIfNotExists(destination);
                 processStart.Arguments = string.Format("/C start " + destination);
                 Process.Start(processStart);
             });
@@ -34,35 +40,30 @@ namespace DatabaseBackup
         {
             await Task.Run(async () =>
             {
-                App_Data.ParentNode parentNode = new App_Data.ParentNode();
-                App_Data.MySQLNode mySQLNode = new App_Data.MySQLNode();
-                string backup_location = parentNode.data(App_Data.ParentNode.node.BackupLocation);
-                string mysql_location = mySQLNode.data(App_Data.MySQLNode.node.Location);
-                string user = mySQLNode.data(App_Data.MySQLNode.node.User);
-                string password = mySQLNode.data(App_Data.MySQLNode.node.Password);
-                bool Overtwrite_Backup = (parentNode.data(App_Data.ParentNode.node.OverwriteBackup).ToUpper() == "TRUE") ? true : false;
+                string backup_location = xml.GetBackupLocationOrDefault();
+                string Hostname = xml.GetHostNameOrDefault();
+                string Port = xml.GetPortOrDefault();
+                string user = xml.GetUsernameOrDefault();
+                string password = xml.GetPasswordOrDefault();
+                bool Overtwrite_Backup = xml.GetOverwriteBackupOrDefault();
 
 
-                if (!Directory.Exists(backup_location))
-                {
-                    Directory.CreateDirectory(backup_location);
-                }
+                CreateDirectoryIfNotExists(backup_location);
                 string destination = backup_location + "\\" + DatabaseName + "\\";
-                if (!Directory.Exists(destination))
-                {
-                    Directory.CreateDirectory(destination);
-                }
+                CreateDirectoryIfNotExists(destination);
+
                 string save_file = destination + "\\" + DatabaseName + ".sql";
                 if (Overtwrite_Backup == false)
                 {
                     save_file = destination + "\\" + DatabaseName + "_" + DateTime.Now.ToString("yyyy_MMM_dd") + ".sql";
                 }
 
+                string mysqldumpCommand = $"mysqldump -h {Hostname} -P {Port} --user={user} --password={password} {DatabaseName} > \"{save_file}\"";
                 ProcessStartInfo processStart = new ProcessStartInfo(@"C:\Windows\system32\cmd.exe");
                 processStart.WindowStyle = ProcessWindowStyle.Hidden;
                 //processStart.Verb = "runas"; 
-                processStart.Arguments = @"/K cd " + mysql_location + " & ";
-                processStart.Arguments += "mysqldump --user=" + user + " --password=" + password + " " + DatabaseName + ">" + save_file;
+                processStart.Arguments = @"/K cd " + Environment.CurrentDirectory + " & ";
+                processStart.Arguments += mysqldumpCommand;
                 Process.Start(processStart);
 
                 if (showmessage == true)
@@ -87,7 +88,6 @@ namespace DatabaseBackup
                     }
                 }
             });
-
         }
     }
 }

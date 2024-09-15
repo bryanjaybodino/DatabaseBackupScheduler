@@ -1,21 +1,17 @@
 <Settings>
-  <MySQL>
-    <User>root</User>
-    <Password>
-    </Password>
-    <Location>C:\xampp\mysql\bin</Location>
+ <MySQL>
+  <User>root</User>
+  <Password></Password>
+  <Hostname>localhost</Hostname>
+  <Port>3306</Port>
   </MySQL>
-  <Mailer>
-    <Email>
-    </Email>
-    <Password>
-    </Password>
-    <Subject>
-    </Subject>
-    <CC>
-    </CC>
+ <Mailer>
+  <Email></Email>
+  <Password></Password>
+  <Subject></Subject>
+  <CC></CC>
   </Mailer>
-  <BackupLocation>C:\Backup_Files</BackupLocation>
-  <BackupSchedule>10 AM</BackupSchedule>
-  <OverwriteBackup>True</OverwriteBackup>
+ <BackupLocation>C:\Backup_Files</BackupLocation>
+ <BackupSchedule>12 AM</BackupSchedule>
+ <OverwriteBackup>True</OverwriteBackup>
 </Settings>
